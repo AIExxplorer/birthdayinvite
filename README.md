@@ -2,14 +2,11 @@
 
 ![Banner do Aniversário](img/luna.jpg)
 
-## 🧢 Tema: Chapeuzinho Vermelho 🧢
-
 Bem-vindo ao repositório do convite digital para o aniversário da Luna! Este projeto foi desenvolvido para criar um convite interativo e atraente para a celebração do 5º aniversário da Luna.
 
 ## ✨ Características
 
 - 🎨 Design moderno e responsivo
-- 🎭 Tema Chapeuzinho Vermelho
 - 🎉 Animações e efeitos visuais interativos
 - 📅 Integração com calendário
 - 📱 Compartilhamento em redes sociais
@@ -61,8 +58,8 @@ Junte-se ao nosso grupo exclusivo de convidados no WhatsApp para atualizações 
 
 ## 🔗 Links Úteis
 
-- [Adicionar ao Calendário](https://calendar.google.com/calendar/render?action=TEMPLATE&text=Anivers%C3%A1rio%20da%20Luna%20-%205%20anos&dates=20250412T140000/20250412T193000&details=Festa%20de%20anivers%C3%A1rio%20da%20Luna%20com%20tema%20Chapeuzinho%20Vermelho&location=BENFARRAS%20JUNTO%20A%20ROTUNDA%20ENTRADA%20VILAMOURA%2C%20N125%2C%208100-068%20Loul%C3%A9)
-- [Compartilhar no WhatsApp](https://wa.me/?text=Venha%20para%20o%20anivers%C3%A1rio%20da%20Luna!%20%F0%9F%8E%82%20Dia%2012/04/2025%20%C3%A0s%2014h.%20Tema%3A%20Chapeuzinho%20Vermelho%20%F0%9F%A7%A2)
+- [Adicionar ao Calendário](https://calendar.google.com/calendar/render?action=TEMPLATE&text=Anivers%C3%A1rio%20da%20Luna%20-%205%20anos&dates=20250412T140000/20250412T193000&details=Festa%20de%20anivers%C3%A1rio%20da%20Luna&location=BENFARRAS%20JUNTO%20A%20ROTUNDA%20ENTRADA%20VILAMOURA%2C%20N125%2C%208100-068%20Loul%C3%A9)
+- [Compartilhar no WhatsApp](https://wa.me/?text=Venha%20para%20o%20anivers%C3%A1rio%20da%20Luna!%20%F0%9F%8E%82%20Dia%2012/04/2025%20%C3%A0s%2014h.%20Local%3A%20BENFARRAS%20JUNTO%20A%20ROTUNDA%20ENTRADA%20VILAMOURA%2C%20N125%2C%208100-068%20Loul%C3%A9)
 
 ## 📝 Licença
 

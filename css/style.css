@@ -342,13 +342,10 @@ section h3 {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 1rem auto 0;
-    max-width: 300px;
 }
 
 .whatsapp-btn i {
     margin-right: 8px;
-    font-size: 1.2rem;
 }
 
 /* Footer Styles */
