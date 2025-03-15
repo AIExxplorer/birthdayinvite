@@ -97,8 +97,9 @@ header h1 {
     font-family: 'Pacifico', cursive;
     font-size: 3rem;
     margin-bottom: 1.5rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1), 0 0 10px rgba(255, 255, 255, 0.5);
     color: white;
+    font-weight: normal;
 }
 
 .princess-title {
@@ -109,33 +110,53 @@ header h1 {
     width: 100%;
 }
 
-.flower-container {
+.circle-container {
     position: relative;
     width: 300px;
     height: 300px;
     margin: 0 auto 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.luna-crown {
-    width: 300px;
-    height: 300px;
-    object-fit: cover;
-    object-position: center;
-    border: 3px solid rgba(255, 255, 255, 0.8);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
-    clip-path: url(#flower-shape);
+.slideshow-container {
+    width: 290px;
+    height: 290px;
     position: relative;
     z-index: 2;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.flower-container::after {
+.luna-image {
+    width: 290px;
+    height: 290px;
+    object-fit: cover;
+    object-position: center;
+    border: none;
+    transition: all 0.5s ease;
+    position: absolute;
+    opacity: 0;
+    border-radius: 50%;
+}
+
+.luna-image.active {
+    opacity: 1;
+}
+
+.circle-container::after {
     content: '';
     position: absolute;
-    top: -10px;
-    left: -10px;
-    right: -10px;
-    bottom: -10px;
+    top: -6px;
+    left: -6px;
+    right: -6px;
+    bottom: -6px;
     background: linear-gradient(45deg, 
         rgba(255, 192, 203, 0.7),
         rgba(255, 255, 255, 0.9),
@@ -144,20 +165,36 @@ header h1 {
         rgba(255, 192, 203, 0.7)
     );
     z-index: 1;
-    clip-path: url(#flower-shape-outer);
-    animation: rotate-highlight 10s linear infinite;
+    border-radius: 50%;
+    animation: pulse-circle 2s ease-in-out infinite alternate;
     opacity: 0.7;
 }
 
-.flower-container:hover::after {
+.circle-container:hover::after {
     opacity: 1;
 }
 
-.flower-container:hover .luna-crown {
-    transform: scale(1.02);
+@keyframes pulse-circle {
+    0% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(1.05);
+        opacity: 0.9;
+    }
+}
+
+.circle-container:hover .slideshow-container {
     border-color: rgba(255, 255, 255, 1);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
 }
+
+.circle-container:hover .luna-image.active {
+    transform: scale(1.02);
+}
+
+/* Removed heart container styles */
 
 @keyframes rotate-highlight {
     0% {
@@ -173,8 +210,9 @@ header h1 {
     font-size: 4rem;
     margin-bottom: 1rem;
     color: white;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2), 0 0 15px rgba(255, 255, 255, 0.5);
     position: relative;
+    font-weight: normal;
 }
 
 .princess-title h2::after {
@@ -190,7 +228,7 @@ header h1 {
 
 .age {
     font-size: 2.2rem;
-    font-weight: bold;
+    font-weight: normal;
     color: white;
     background-color: rgba(251, 164, 69, 0.8);
     padding: 0.8rem 2.5rem;
@@ -202,6 +240,7 @@ header h1 {
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     transition: all 0.3s ease;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2), 0 0 10px rgba(255, 255, 255, 0.4);
 }
 
 .age:hover {
@@ -245,6 +284,8 @@ section h3 {
     color: var(--pink);
     margin-bottom: 1.5rem;
     text-align: center;
+    font-weight: normal;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(255, 255, 255, 0.3);
 }
 
 /* Invitation Details Section */
@@ -272,12 +313,13 @@ section h3 {
 
 .invitation-details h3 {
     color: white;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 0 10px rgba(255, 255, 255, 0.3);
     font-family: 'Pacifico', cursive;
     font-size: 2.2rem;
     margin-bottom: 1.8rem;
     position: relative;
     display: inline-block;
+    font-weight: normal;
 }
 
 .invitation-details h3::after {
@@ -311,8 +353,8 @@ section h3 {
 .invitation-details p {
     margin-bottom: 1rem;
     font-size: 1.1rem;
-    font-weight: 600;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    font-weight: normal;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), 0 0 8px rgba(255, 255, 255, 0.3);
 }
 
 .event-date, .event-time, .event-location {
@@ -339,11 +381,11 @@ section h3 {
     border-radius: 15px;
     text-align: center;
     margin: 1.5rem 0;
-    font-weight: bold;
+    font-weight: normal;
     font-size: 1.2rem;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 0 8px rgba(255, 255, 255, 0.3);
     transition: all 0.3s ease;
 }
 
@@ -371,7 +413,7 @@ section h3 {
     padding: 0.9rem 1.5rem;
     border-radius: 50px;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: normal;
     text-align: center;
     transition: all 0.3s ease;
     cursor: pointer;
@@ -380,6 +422,7 @@ section h3 {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .confirm-btn {
@@ -429,12 +472,13 @@ section h3 {
 
 .map-section h3 {
     color: var(--pink);
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 10px rgba(255, 255, 255, 0.3);
     font-family: 'Pacifico', cursive;
     font-size: 2.2rem;
     position: relative;
     display: inline-block;
     margin-bottom: 1.8rem;
+    font-weight: normal;
 }
 
 .map-section h3::after {
@@ -531,7 +575,7 @@ section h3 {
     color: var(--brown);
     margin-bottom: 2rem;
     text-align: center;
-    font-weight: 600;
+    font-weight: normal;
     position: relative;
     display: inline-block;
     padding: 0.5rem 2rem;
@@ -666,39 +710,82 @@ section h3 {
 }
 
 .virtual-badge {
-    background-color: var(--light-blue);
-    border-radius: 15px;
-    padding: 1.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: white;
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     margin-bottom: 1.5rem;
+    border: 1px solid rgba(242, 156, 165, 0.3);
     max-width: 300px;
     margin: 0 auto 1.5rem;
 }
 
-.badge-image {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 5px solid var(--orange);
+.circle-image-container {
+    position: relative;
+    width: 140px;
+    height: 140px;
     margin-bottom: 1rem;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 3px solid rgba(242, 156, 165, 0.8);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.badge-image {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    object-position: center;
+    border: none;
+    margin-bottom: 0;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.circle-image-container::after {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    background: linear-gradient(45deg, 
+        rgba(255, 192, 203, 0.7),
+        rgba(255, 255, 255, 0.9),
+        rgba(255, 223, 186, 0.7),
+        rgba(255, 255, 255, 0.9),
+        rgba(255, 192, 203, 0.7)
+    );
+    z-index: -1;
+    border-radius: 50%;
+    animation: pulse-circle 2s ease-in-out infinite alternate;
+    opacity: 0.7;
 }
 
 .badge-text {
     text-align: center;
-    color: white;
+    width: 100%;
 }
 
 .badge-name {
     font-size: 1.3rem;
-    font-weight: bold;
+    color: var(--pink);
     margin-bottom: 0.5rem;
+    font-family: 'Pacifico', cursive;
+    font-weight: normal;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .badge-confirmed {
-    font-size: 1rem;
+    font-size: 0.9rem;
+    color: var(--brown);
+    font-weight: normal;
 }
 
 .badge-btn {
@@ -770,9 +857,9 @@ footer a:hover {
 }
 
 @media (min-width: 992px) {
-    .luna-crown {
-        width: 180px;
-        height: 180px;
+    .luna-image {
+        width: 290px;
+        height: 290px;
     }
     
     .card-content {

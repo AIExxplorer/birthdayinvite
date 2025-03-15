@@ -8,6 +8,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Load guest count from localStorage or Firebase
     loadGuestCount();
     
+    // Start image slideshow
+    startSlideshow();
+    
     // Form submission
     const confirmationForm = document.getElementById('confirmation-form');
     if (confirmationForm) {
@@ -26,6 +29,29 @@ document.addEventListener('DOMContentLoaded', function() {
         downloadBadgeBtn.addEventListener('click', downloadBadge);
     }
 });
+
+// Image slideshow function
+function startSlideshow() {
+    const images = document.querySelectorAll('.luna-image');
+    if (images.length === 0) return;
+    
+    let currentIndex = 0;
+    
+    // Function to show next image with smooth transition
+    function showNextImage() {
+        // Hide current image
+        images[currentIndex].classList.remove('active');
+        
+        // Calculate next index
+        currentIndex = (currentIndex + 1) % images.length;
+        
+        // Show next image
+        images[currentIndex].classList.add('active');
+    }
+    
+    // Change image every 3 seconds
+    setInterval(showNextImage, 3000);
+}
 
 // Confetti animation
 function launchConfetti() {

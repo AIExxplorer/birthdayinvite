@@ -11,32 +11,17 @@
 <body>
     <div class="confetti-container" id="confetti-container"></div>
     
-    <!-- SVG Definitions for Flower Shape -->
-    <svg width="0" height="0" style="position: absolute;">
-        <defs>
-            <clipPath id="flower-shape">
-                <path d="M150,0 C150,0 125,100 0,150 C0,150 100,175 150,300 C150,300 200,175 300,150 C300,150 175,100 150,0 Z" />
-                <path d="M150,20 C150,20 200,75 150,150 C150,150 100,75 150,20 Z" />
-                <path d="M150,150 C150,150 200,225 150,280 C150,280 100,225 150,150 Z" />
-                <path d="M150,150 C150,150 75,200 20,150 C20,150 75,100 150,150 Z" />
-                <path d="M150,150 C150,150 225,100 280,150 C280,150 225,200 150,150 Z" />
-            </clipPath>
-            <clipPath id="flower-shape-outer">
-                <path d="M150,-10 C150,-10 120,100 -10,150 C-10,150 100,180 150,310 C150,310 200,180 310,150 C310,150 180,100 150,-10 Z" />
-                <path d="M150,10 C150,10 205,70 150,150 C150,150 95,70 150,10 Z" />
-                <path d="M150,150 C150,150 205,230 150,290 C150,290 95,230 150,150 Z" />
-                <path d="M150,150 C150,150 70,205 10,150 C10,150 70,95 150,150 Z" />
-                <path d="M150,150 C150,150 230,95 290,150 C290,150 230,205 150,150 Z" />
-            </clipPath>
-        </defs>
-    </svg>
-    
     <header>
         <div class="header-content">
             <h1>Convite de Aniversário</h1>
             <div class="princess-title">
-                <div class="flower-container">
-                    <img src="img/luna.jpg" alt="Luna" class="luna-crown">
+                <div class="circle-container">
+                    <div class="slideshow-container">
+                        <img src="assets/images/Luna 1.png" alt="Luna" class="luna-image active">
+                        <img src="assets/images/Luna 2.png" alt="Luna" class="luna-image">
+                        <img src="assets/images/Luna 3.png" alt="Luna" class="luna-image">
+                        <img src="assets/images/Luna 4.png" alt="Luna" class="luna-image">
+                    </div>
                 </div>
                 <h2>Luna</h2>
                 <div class="age-container">
@@ -143,7 +128,9 @@
                     
                     <div class="badge-container">
                         <div id="virtual-badge" class="virtual-badge">
-                            <img src="assets/images/Luna 3.png" alt="Luna" class="badge-image">
+                            <div class="circle-image-container">
+                                <img src="assets/images/Luna 3.png" alt="Luna" class="badge-image">
+                            </div>
                             <div class="badge-text">
                                 <p class="badge-name">Nome do Convidado</p>
                                 <p class="badge-confirmed">Confirmado - 3º Aniversário da Luna</p>
