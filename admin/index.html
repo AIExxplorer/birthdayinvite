@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Aniversário da Luna</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Pacifico&display=swap" rel="stylesheet">
+</head>
+<body class="admin-body">
+    <header class="admin-header">
+        <div class="header-content">
+            <h1>Painel de Administração</h1>
+            <p>Aniversário da Luna - 3 Anos</p>
+        </div>
+    </header>
+    
+    <main>
+        <section class="login-section">
+            <div class="card">
+                <div class="card-content">
+                    <h3>Login de Administrador</h3>
+                    
+                    <form id="login-form">
+                        <div class="form-group">
+                            <label for="admin-email">Email:</label>
+                            <input type="email" id="admin-email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="admin-password">Password:</label>
+                            <input type="password" id="admin-password" name="password" required>
+                        </div>
+                        
+                        <div class="form-message" id="login-message"></div>
+                        
+                        <button type="submit" class="btn submit-btn">Entrar</button>
+                    </form>
+                    
+                    <div class="register-link">
+                        <p>Não tem conta? <a href="register.html">Registar</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 <a href="https://www.linkedin.com/in/aiexxplore/" target="_blank">Wagner Rafael</a></p>
+            <p><a href="https://github.com/aiexxplorer" target="_blank">AIEXXPLORER™</a></p>
+        </div>
+    </footer>
+    
+    <script src="admin.js"></script>
+</body>
+</html> 

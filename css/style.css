@@ -1,0 +1,441 @@
+/* Color Palette 
+   #7da3ac - Light Blue
+   #F29CA5 - Pink
+   #FBA445 - Orange
+   #ffe0c2 - Light Peach
+   #62372a - Brown (text)
+*/
+
+:root {
+    --light-blue: #7da3ac;
+    --pink: #F29CA5;
+    --orange: #FBA445;
+    --light-peach: #ffe0c2;
+    --brown: #62372a;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    background-color: var(--light-peach);
+    color: var(--brown);
+    line-height: 1.6;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.confetti-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+/* Header Styles */
+header {
+    background-color: var(--pink);
+    color: var(--brown);
+    text-align: center;
+    padding: 2rem 1rem;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 5px solid var(--orange);
+}
+
+.header-content {
+    position: relative;
+    z-index: 2;
+}
+
+header h1 {
+    font-family: 'Pacifico', cursive;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.princess-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.luna-crown {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid var(--orange);
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.princess-title h2 {
+    font-family: 'Pacifico', cursive;
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    color: var(--brown);
+}
+
+.age {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--brown);
+    background-color: var(--orange);
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    display: inline-block;
+    margin-top: 0.5rem;
+}
+
+/* Main Content Styles */
+main {
+    padding: 2rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-content {
+    padding: 2rem;
+}
+
+section h3 {
+    font-family: 'Pacifico', cursive;
+    font-size: 1.8rem;
+    color: var(--pink);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+/* Invitation Details Section */
+.invitation-details .card {
+    background-color: var(--light-blue);
+    color: white;
+}
+
+.invitation-details h3 {
+    color: white;
+}
+
+.invitation-details p {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.event-date, .event-time, .event-location, .theme {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.8rem;
+}
+
+.event-date i, .event-time i, .event-location i {
+    margin-right: 10px;
+    color: var(--orange);
+}
+
+.countdown, .guest-count {
+    background-color: var(--orange);
+    color: white;
+    padding: 0.8rem;
+    border-radius: 10px;
+    text-align: center;
+    margin: 1.5rem 0;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.guest-count {
+    background-color: var(--pink);
+}
+
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    font-size: 1rem;
+}
+
+.confirm-btn {
+    background-color: var(--orange);
+    color: white;
+}
+
+.calendar-btn {
+    background-color: var(--pink);
+    color: white;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Confirmation Form Section */
+.confirmation-section .card {
+    background-color: white;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: var(--brown);
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="number"] {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid var(--light-blue);
+    border-radius: 8px;
+    font-size: 1rem;
+    color: var(--brown);
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-group input {
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+}
+
+.submit-btn {
+    background-color: var(--orange);
+    color: white;
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.1rem;
+}
+
+/* Map Section */
+.map-container {
+    border-radius: 10px;
+    overflow: hidden;
+    height: 300px;
+}
+
+/* Success Section */
+.success-section {
+    text-align: center;
+}
+
+.success-section.hidden {
+    display: none;
+}
+
+.badge-container {
+    margin: 2rem 0;
+}
+
+.virtual-badge {
+    background-color: var(--light-blue);
+    border-radius: 15px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    max-width: 300px;
+    margin: 0 auto 1.5rem;
+}
+
+.badge-image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid var(--orange);
+    margin-bottom: 1rem;
+}
+
+.badge-text {
+    text-align: center;
+    color: white;
+}
+
+.badge-name {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.badge-confirmed {
+    font-size: 1rem;
+}
+
+.badge-btn {
+    background-color: var(--orange);
+    color: white;
+}
+
+.whatsapp-group {
+    margin-top: 2rem;
+}
+
+.whatsapp-btn {
+    background-color: #25D366;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem auto 0;
+    max-width: 300px;
+}
+
+.whatsapp-btn i {
+    margin-right: 8px;
+    font-size: 1.2rem;
+}
+
+/* Footer Styles */
+footer {
+    background-color: var(--pink);
+    color: white;
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: 2rem;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+footer a {
+    color: var(--brown);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+    header {
+        padding: 3rem 2rem;
+    }
+    
+    header h1 {
+        font-size: 3rem;
+    }
+    
+    .princess-title h2 {
+        font-size: 4rem;
+    }
+    
+    .age {
+        font-size: 2rem;
+    }
+    
+    main {
+        padding: 3rem 2rem;
+    }
+    
+    .buttons {
+        justify-content: center;
+    }
+    
+    .btn {
+        min-width: 200px;
+    }
+}
+
+@media (min-width: 992px) {
+    .luna-crown {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .card-content {
+        padding: 2.5rem;
+    }
+    
+    .virtual-badge {
+        flex-direction: row;
+        max-width: 500px;
+        text-align: left;
+        padding: 2rem;
+    }
+    
+    .badge-image {
+        margin-right: 2rem;
+        margin-bottom: 0;
+    }
+    
+    .badge-text {
+        text-align: left;
+    }
+}
+
+/* Animation for confetti */
+@keyframes confetti-fall {
+    0% {
+        transform: translateY(-100vh);
+    }
+    100% {
+        transform: translateY(100vh);
+    }
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: var(--pink);
+    animation: confetti-fall 5s linear infinite;
+}
+
+/* Instagram Story Aspect Ratio (9:16) for Mobile */
+@media (max-width: 767px) and (min-aspect-ratio: 9/16) {
+    body {
+        max-width: 100vh;
+        margin: 0 auto;
+    }
+} 
