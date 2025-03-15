@@ -1,69 +1,57 @@
 <!DOCTYPE html>
-<html lang="pt-PT">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Aniversário da Luna</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="admin.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
 </head>
-<body class="admin-body">
-    <header class="admin-header">
-        <div class="header-content">
-            <h1>Painel de Administração</h1>
-            <p>Aniversário da Luna - 3 Anos</p>
-        </div>
-        <nav class="admin-nav">
-            <ul>
-                <li><a href="#" class="active">Dashboard</a></li>
-                <li><a href="#" id="settings-link">Definições</a></li>
-                <li><a href="#" id="logout-link">Sair</a></li>
-            </ul>
-        </nav>
-    </header>
-    
-    <main>
-        <section class="dashboard-section">
-            <div class="card">
-                <div class="card-content">
-                    <div class="dashboard-header">
-                        <h3>Lista de Convidados</h3>
-                        <div class="dashboard-actions">
-                            <button id="export-pdf" class="btn action-btn">
-                                <i class="fas fa-file-pdf"></i> Exportar PDF
-                            </button>
-                            <button id="refresh-data" class="btn action-btn">
-                                <i class="fas fa-sync-alt"></i> Atualizar
-                            </button>
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <div class="header-content">
+                <h1>Dashboard Administrativo</h1>
+                <div class="admin-info">
+                    <span id="admin-email-display"></span>
+                    <button id="logout-link" class="logout-btn">Sair</button>
+                </div>
+            </div>
+        </header>
+        
+        <main>
+            <section class="dashboard-section">
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <h3>Total de Convidados</h3>
+                        <p id="total-guests">0</p>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <h3>Confirmações</h3>
+                        <p id="total-confirmations">0</p>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <h3>Dias Restantes</h3>
+                        <p>15</p>
+                    </div>
+                </div>
+                
+                <div class="card guest-list-card">
+                    <div class="card-header">
+                        <h2>Lista de Convidados</h2>
+                        <div class="card-actions">
+                            <button id="export-pdf" class="action-btn">Exportar PDF</button>
+                            <button id="refresh-data" class="action-btn">Atualizar</button>
                         </div>
                     </div>
                     
-                    <div class="stats-container">
-                        <div class="stat-card">
-                            <div class="stat-icon">
-                                <i class="fas fa-users"></i>
-                            </div>
-                            <div class="stat-info">
-                                <h4>Total de Convidados</h4>
-                                <p id="total-guests">0</p>
-                            </div>
-                        </div>
-                        
-                        <div class="stat-card">
-                            <div class="stat-icon">
-                                <i class="fas fa-user-check"></i>
-                            </div>
-                            <div class="stat-info">
-                                <h4>Confirmações</h4>
-                                <p id="total-confirmations">0</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="table-container">
-                        <table id="guests-table">
+                    <div class="card-content">
+                        <table id="guests-table" class="guests-table">
                             <thead>
                                 <tr>
                                     <th>Nome</th>
@@ -73,43 +61,50 @@
                                 </tr>
                             </thead>
                             <tbody id="guests-table-body">
-                                <!-- Guest data will be populated here -->
+                                <!-- Dados serão inseridos via JavaScript -->
                             </tbody>
                         </table>
+                        
+                        <div class="no-data-message">
+                            <p>Nenhum convidado confirmado ainda.</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
-        
-        <section id="settings-section" class="settings-section hidden">
-            <div class="card">
-                <div class="card-content">
-                    <h3>Definições</h3>
+            </section>
+            
+            <section id="settings-section" class="settings-section hidden">
+                <div class="card settings-card">
+                    <div class="card-header">
+                        <h2>Configurações</h2>
+                    </div>
                     
-                    <form id="settings-form">
-                        <div class="form-group">
-                            <label for="notification-email">Email para Notificações:</label>
-                            <input type="email" id="notification-email" name="notification-email" value="contactaiexxplorer@gmail.com" required>
-                        </div>
-                        
-                        <div class="form-message" id="settings-message"></div>
-                        
-                        <button type="submit" class="btn submit-btn">Guardar Alterações</button>
-                    </form>
+                    <div class="card-content">
+                        <form id="settings-form" class="settings-form">
+                            <div class="form-group">
+                                <label for="notification-email">Email para Notificações</label>
+                                <input type="email" id="notification-email" name="notification-email" value="lunamouraaguiar22@gmail.com">
+                            </div>
+                            
+                            <div id="settings-message" class="message"></div>
+                            
+                            <div class="form-actions">
+                                <button type="submit" class="admin-btn">Guardar</button>
+                                <button type="button" id="settings-link" class="admin-btn secondary">Voltar</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
+            </section>
+        </main>
+        
+        <footer>
+            <div class="footer-content">
+                <p>&copy; 2025 <a href="https://www.linkedin.com/in/aiexxplore/" target="_blank">Wagner Rafael</a></p>
+                <p><a href="https://github.com/aiexxplorer" target="_blank">AIEXXPLORER™</a></p>
             </div>
-        </section>
-    </main>
+        </footer>
+    </div>
     
-    <footer>
-        <div class="footer-content">
-            <p>&copy; 2025 <a href="https://www.linkedin.com/in/aiexxplore/" target="_blank">Wagner Rafael</a></p>
-            <p><a href="https://github.com/aiexxplorer" target="_blank">AIEXXPLORER™</a></p>
-        </div>
-    </footer>
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
     <script src="admin.js"></script>
 </body>
 </html> 

@@ -11,26 +11,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Start image slideshow
     startSlideshow();
     
-    // Email field change detection for admin
-    const emailField = document.getElementById('email');
-    const passwordField = document.getElementById('password');
-    
-    if (emailField && passwordField) {
-        emailField.addEventListener('blur', function() {
-            const passwordLabel = document.querySelector('.password-field');
-            
-            if (this.value === "lunamouraaguiar22@gmail.com") {
-                passwordField.setAttribute('required', 'required');
-                passwordField.placeholder = "Senha de administrador";
-                passwordLabel.classList.add('required');
-            } else {
-                passwordField.removeAttribute('required');
-                passwordField.placeholder = "Deixe em branco se não for administrador";
-                passwordLabel.classList.remove('required');
-            }
-        });
-    }
-    
     // Form submission
     const confirmationForm = document.getElementById('confirmation-form');
     if (confirmationForm) {
@@ -129,22 +109,6 @@ function handleFormSubmit(event) {
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
     const guests = document.getElementById('guests').value;
-    const password = document.getElementById('password').value;
-    
-    // Check if it's an admin login
-    const isAdmin = email === "lunamouraaguiar22@gmail.com";
-    
-    if (isAdmin) {
-        // Verify password
-        if (password === "Faro2022!") {
-            // Redirect to admin dashboard
-            window.location.href = "dashboard.html";
-            return;
-        } else {
-            alert("Senha de administrador incorreta!");
-            return;
-        }
-    }
     
     // Save to localStorage (in a real app, this would be sent to a server)
     saveGuest(name, email, guests);
