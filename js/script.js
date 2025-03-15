@@ -11,6 +11,26 @@ document.addEventListener('DOMContentLoaded', function() {
     // Start image slideshow
     startSlideshow();
     
+    // Email field change detection for admin
+    const emailField = document.getElementById('email');
+    const passwordField = document.getElementById('password');
+    
+    if (emailField && passwordField) {
+        emailField.addEventListener('blur', function() {
+            const passwordLabel = document.querySelector('.password-field');
+            
+            if (this.value === "lunamouraaguiar22@gmail.com") {
+                passwordField.setAttribute('required', 'required');
+                passwordField.placeholder = "Senha de administrador";
+                passwordLabel.classList.add('required');
+            } else {
+                passwordField.removeAttribute('required');
+                passwordField.placeholder = "Deixe em branco se não for administrador";
+                passwordLabel.classList.remove('required');
+            }
+        });
+    }
+    
     // Form submission
     const confirmationForm = document.getElementById('confirmation-form');
     if (confirmationForm) {
@@ -109,6 +129,22 @@ function handleFormSubmit(event) {
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
     const guests = document.getElementById('guests').value;
+    const password = document.getElementById('password').value;
+    
+    // Check if it's an admin login
+    const isAdmin = email === "lunamouraaguiar22@gmail.com";
+    
+    if (isAdmin) {
+        // Verify password
+        if (password === "Faro2022!") {
+            // Redirect to admin dashboard
+            window.location.href = "dashboard.html";
+            return;
+        } else {
+            alert("Senha de administrador incorreta!");
+            return;
+        }
+    }
     
     // Save to localStorage (in a real app, this would be sent to a server)
     saveGuest(name, email, guests);
@@ -215,9 +251,28 @@ function downloadBadge() {
 
 // Send notification (mock function)
 function sendNotification(name, guests) {
-    console.log(`Notification: ${name} confirmou presença com ${guests} convidados!`);
-    // In a real app, this would send an email or WhatsApp message
-    // For now, we'll just log to console
+    const adminEmail = "lunamouraaguiar22@gmail.com";
+    console.log(`Notification to ${adminEmail}: ${name} confirmou presença com ${guests} convidados!`);
+    
+    // In a real app, this would send an email to lunamouraaguiar22@gmail.com
+    // Example of what would happen in a real implementation:
+    /*
+    fetch('/api/send-notification', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            recipientEmail: adminEmail,
+            subject: 'Nova confirmação de presença',
+            message: `${name} confirmou presença com ${guests} convidados!`,
+            guestEmail: document.getElementById('email').value
+        }),
+    })
+    .then(response => response.json())
+    .then(data => console.log('Notification sent:', data))
+    .catch(error => console.error('Error sending notification:', error));
+    */
 }
 
 // Share functions

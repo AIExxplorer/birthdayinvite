@@ -612,7 +612,8 @@ section h3 {
 
 .form-group input[type="text"],
 .form-group input[type="email"],
-.form-group input[type="number"] {
+.form-group input[type="number"],
+.form-group input[type="password"] {
     width: 100%;
     padding: 0.9rem 1rem;
     border: 2px solid rgba(125, 163, 172, 0.3);
@@ -951,4 +952,26 @@ footer a:hover {
     100% {
         background-position: 100% 100%;
     }
+}
+
+.password-field {
+    position: relative;
+}
+
+.password-field::after {
+    content: 'Opcional';
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 0.8rem;
+    color: var(--orange);
+    background-color: rgba(255, 224, 194, 0.5);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+}
+
+.password-field.required::after {
+    content: 'Obrigatório';
+    color: white;
+    background-color: rgba(242, 156, 165, 0.8);
 } 
