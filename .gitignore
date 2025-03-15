@@ -2,6 +2,13 @@
 .cursor/mcp.json
 .cursor/mcp-config.json
 
+# Config files with sensitive data
+config/
+config/mcp-config.json
+setup-mcp.ps1
+setup-mcp.js
+setup-mcp.bat
+
 # General ignores
 node_modules/
 .env
@@ -9,6 +16,16 @@ node_modules/
 .env.development.local
 .env.test.local
 .env.production.local
+*.env
+*.pem
+*.key
+*.cert
+*.p12
+*.pfx
+*secret*
+*token*
+*password*
+*credential*
 
 # OS specific files
 .DS_Store
