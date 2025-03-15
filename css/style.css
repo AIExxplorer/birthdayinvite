@@ -12,6 +12,7 @@
     --orange: #FBA445;
     --light-peach: #ffe0c2;
     --brown: #62372a;
+    --map-blue: #4285F4;
 }
 
 * {
@@ -201,9 +202,34 @@ section h3 {
     color: white;
 }
 
+.map-btn {
+    background-color: var(--map-blue);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.map-btn i {
+    margin-right: 8px;
+}
+
 .btn:hover {
     transform: scale(1.05);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Map Section */
+.map-container {
+    border-radius: 10px;
+    overflow: hidden;
+    height: 300px;
+    margin-bottom: 1rem;
+}
+
+.map-link {
+    text-align: center;
+    margin-top: 1rem;
 }
 
 /* Confirmation Form Section */
@@ -250,13 +276,6 @@ section h3 {
     width: 100%;
     padding: 1rem;
     font-size: 1.1rem;
-}
-
-/* Map Section */
-.map-container {
-    border-radius: 10px;
-    overflow: hidden;
-    height: 300px;
 }
 
 /* Success Section */
