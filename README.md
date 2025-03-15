@@ -1,8 +1,8 @@
-# 🎂 Convite de Aniversário da Luna - 5 Anos 🎂
+# 🎂 Convite de Aniversário da Luna - 3 Anos 🎂
 
 ![Banner do Aniversário](img/luna.jpg)
 
-Bem-vindo ao repositório do convite digital para o aniversário da Luna! Este projeto foi desenvolvido para criar um convite interativo e atraente para a celebração do 5º aniversário da Luna.
+Bem-vindo ao repositório do convite digital para o aniversário da Luna! Este projeto foi desenvolvido para criar um convite interativo e atraente para a celebração do 3º aniversário da Luna.
 
 ## ✨ Características
 
