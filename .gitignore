@@ -1,0 +1,15 @@
+# Ignore Cursor MCP configuration with sensitive tokens
+.cursor/mcp.json
+.cursor/mcp-config.json
+
+# General ignores
+node_modules/
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# OS specific files
+.DS_Store
+Thumbs.db 
