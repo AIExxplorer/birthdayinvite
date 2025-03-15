@@ -147,8 +147,8 @@ function generateCalendarFile() {
     const eventTitle = "Aniversário da Luna - 3 Anos";
     const eventStart = "20250412T160000";
     const eventEnd = "20250412T193000";
-    const eventLocation = "Benfars, N125, 8100-068 Loulé";
-    const eventDescription = "Festa de aniversário da Luna com tema Capuchinho Vermelho";
+    const eventLocation = "BENFARRAS JUNTO A ROTUNDA ENTRADA VILAMOURA, N125, 8100-068 Loulé";
+    const eventDescription = "Festa de aniversário da Luna com tema Chapeuzinho Vermelho";
     
     const icsContent = [
         "BEGIN:VCALENDAR",
