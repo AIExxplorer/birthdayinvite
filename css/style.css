@@ -42,25 +42,63 @@ body {
 
 /* Header Styles */
 header {
-    background-color: var(--pink);
-    color: var(--brown);
+    background-color: rgba(242, 156, 165, 0.7);
+    backdrop-filter: blur(10px);
+    padding: 3rem 1rem;
     text-align: center;
-    padding: 2rem 1rem;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.5);
     position: relative;
     overflow: hidden;
-    border-bottom: 5px solid var(--orange);
+    background-image: 
+        radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.3) 2px, transparent 2px),
+        radial-gradient(circle at 40% 70%, rgba(255, 255, 255, 0.3) 3px, transparent 3px),
+        radial-gradient(circle at 60% 20%, rgba(255, 255, 255, 0.3) 4px, transparent 4px),
+        radial-gradient(circle at 80% 50%, rgba(255, 255, 255, 0.3) 2px, transparent 2px);
+    background-size: 100px 100px;
+    animation: confetti-bg 20s linear infinite alternate;
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 20% 30%, rgba(251, 164, 69, 0.1) 0%, transparent 15%),
+        radial-gradient(circle at 80% 20%, rgba(242, 156, 165, 0.2) 0%, transparent 20%),
+        radial-gradient(circle at 40% 70%, rgba(125, 163, 172, 0.15) 0%, transparent 18%),
+        radial-gradient(circle at 70% 60%, rgba(255, 255, 255, 0.1) 0%, transparent 12%);
+    z-index: 0;
+    animation: float-header-confetti 20s ease-in-out infinite alternate;
+}
+
+@keyframes float-header-confetti {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 100% 100%;
+    }
 }
 
 .header-content {
     position: relative;
     z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 header h1 {
     font-family: 'Pacifico', cursive;
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    color: white;
 }
 
 .princess-title {
@@ -68,34 +106,113 @@ header h1 {
     flex-direction: column;
     align-items: center;
     margin-top: 1rem;
+    width: 100%;
+}
+
+.flower-container {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 0 auto 1rem;
 }
 
 .luna-crown {
-    width: 150px;
-    height: 150px;
+    width: 300px;
+    height: 300px;
     object-fit: cover;
-    border-radius: 50%;
-    border: 5px solid var(--orange);
-    margin-bottom: 1rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    object-position: center;
+    border: 3px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    clip-path: url(#flower-shape);
+    position: relative;
+    z-index: 2;
+}
+
+.flower-container::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: linear-gradient(45deg, 
+        rgba(255, 192, 203, 0.7),
+        rgba(255, 255, 255, 0.9),
+        rgba(255, 223, 186, 0.7),
+        rgba(255, 255, 255, 0.9),
+        rgba(255, 192, 203, 0.7)
+    );
+    z-index: 1;
+    clip-path: url(#flower-shape-outer);
+    animation: rotate-highlight 10s linear infinite;
+    opacity: 0.7;
+}
+
+.flower-container:hover::after {
+    opacity: 1;
+}
+
+.flower-container:hover .luna-crown {
+    transform: scale(1.02);
+    border-color: rgba(255, 255, 255, 1);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+@keyframes rotate-highlight {
+    0% {
+        filter: hue-rotate(0deg);
+    }
+    100% {
+        filter: hue-rotate(360deg);
+    }
 }
 
 .princess-title h2 {
     font-family: 'Pacifico', cursive;
-    font-size: 3rem;
-    margin-bottom: 0.5rem;
-    color: var(--brown);
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    color: white;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.princess-title h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
 }
 
 .age {
-    font-size: 1.8rem;
+    font-size: 2.2rem;
     font-weight: bold;
-    color: var(--brown);
-    background-color: var(--orange);
-    padding: 0.5rem 1.5rem;
+    color: white;
+    background-color: rgba(251, 164, 69, 0.8);
+    padding: 0.8rem 2.5rem;
     border-radius: 50px;
     display: inline-block;
-    margin-top: 0.5rem;
+    margin-top: 1.5rem;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+}
+
+.age:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.age-container {
+    margin-top: 1.5rem;
+    position: relative;
+    z-index: 2;
 }
 
 /* Main Content Styles */
@@ -132,43 +249,111 @@ section h3 {
 
 /* Invitation Details Section */
 .invitation-details .card {
-    background-color: var(--light-blue);
+    background-color: rgba(125, 163, 172, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     color: white;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.invitation-details .card:hover {
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+}
+
+.invitation-details .card-content {
+    position: relative;
+    z-index: 1;
 }
 
 .invitation-details h3 {
     color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    font-family: 'Pacifico', cursive;
+    font-size: 2.2rem;
+    margin-bottom: 1.8rem;
+    position: relative;
+    display: inline-block;
+}
+
+.invitation-details h3::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+    animation: shine 2s infinite;
+}
+
+@keyframes shine {
+    0% {
+        width: 0;
+        opacity: 0;
+    }
+    50% {
+        width: 80%;
+        opacity: 1;
+    }
+    100% {
+        width: 0;
+        opacity: 0;
+        left: 100%;
+    }
 }
 
 .invitation-details p {
     margin-bottom: 1rem;
     font-size: 1.1rem;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-.event-date, .event-time, .event-location, .theme {
+.event-date, .event-time, .event-location {
     display: flex;
     align-items: center;
-    margin-bottom: 0.8rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .event-date i, .event-time i, .event-location i {
-    margin-right: 10px;
+    margin-right: 15px;
     color: var(--orange);
+    font-size: 1.3rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .countdown, .guest-count {
-    background-color: var(--orange);
+    background-color: rgba(251, 164, 69, 0.8);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     color: white;
-    padding: 0.8rem;
-    border-radius: 10px;
+    padding: 1rem;
+    border-radius: 15px;
     text-align: center;
     margin: 1.5rem 0;
     font-weight: bold;
     font-size: 1.2rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.countdown:hover, .guest-count:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
 .guest-count {
-    background-color: var(--pink);
+    background-color: rgba(242, 156, 165, 0.8);
 }
 
 .buttons {
@@ -176,55 +361,100 @@ section h3 {
     flex-wrap: wrap;
     justify-content: center;
     gap: 1rem;
-    margin-top: 1.5rem;
+    margin-top: 2rem;
 }
 
 .btn {
-    display: inline-block;
-    padding: 0.8rem 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.9rem 1.5rem;
     border-radius: 50px;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 600;
     text-align: center;
     transition: all 0.3s ease;
     cursor: pointer;
-    border: none;
+    border: 1px solid rgba(255, 255, 255, 0.3);
     font-size: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
 }
 
 .confirm-btn {
-    background-color: var(--orange);
+    background-color: rgba(251, 164, 69, 0.8);
     color: white;
 }
 
 .calendar-btn {
-    background-color: var(--pink);
+    background-color: rgba(242, 156, 165, 0.8);
     color: white;
 }
 
-.map-btn {
-    background-color: var(--map-blue);
+.whatsapp-btn {
+    background-color: rgba(37, 211, 102, 0.8);
     color: white;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.map-btn i {
+.map-btn {
+    background-color: rgba(66, 133, 244, 0.8);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn i {
     margin-right: 8px;
+    font-size: 1.1rem;
 }
 
 .btn:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
 
 /* Map Section */
+.map-section .card {
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.map-section h3 {
+    color: var(--pink);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    font-family: 'Pacifico', cursive;
+    font-size: 2.2rem;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 1.8rem;
+}
+
+.map-section h3::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--pink), transparent);
+}
+
 .map-container {
     border-radius: 10px;
     overflow: hidden;
     height: 300px;
     margin-bottom: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .map-link {
@@ -232,9 +462,95 @@ section h3 {
     margin-top: 1rem;
 }
 
+.map-section .map-btn {
+    background-color: rgba(66, 133, 244, 0.8);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 0.9rem 1.8rem;
+    transition: all 0.3s ease;
+}
+
+.map-section .map-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    background-color: rgba(66, 133, 244, 0.9);
+}
+
 /* Confirmation Form Section */
 .confirmation-section .card {
     background-color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.confirmation-section .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(242, 156, 165, 0.05) 0%, rgba(255, 255, 255, 0) 50%, rgba(125, 163, 172, 0.05) 100%);
+    z-index: 0;
+}
+
+.confirmation-section .card-content {
+    position: relative;
+    z-index: 1;
+}
+
+.confirmation-section h3 {
+    font-size: 2.2rem;
+    margin-bottom: 0.8rem;
+    background: linear-gradient(45deg, var(--pink), var(--orange));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+    position: relative;
+}
+
+.confirmation-section h3::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--pink), transparent);
+}
+
+.confirmation-section p {
+    font-size: 1.2rem;
+    color: var(--brown);
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: 600;
+    position: relative;
+    display: inline-block;
+    padding: 0.5rem 2rem;
+    border-radius: 50px;
+    background-color: rgba(255, 224, 194, 0.3);
+    border: 1px solid rgba(251, 164, 69, 0.2);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    animation: pulse-elegant 3s infinite alternate;
+}
+
+@keyframes pulse-elegant {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    }
+    100% {
+        transform: scale(1.03);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
 }
 
 .form-group {
@@ -246,36 +562,94 @@ section h3 {
     margin-bottom: 0.5rem;
     font-weight: bold;
     color: var(--brown);
+    font-size: 1.05rem;
+    transition: all 0.3s ease;
 }
 
 .form-group input[type="text"],
 .form-group input[type="email"],
 .form-group input[type="number"] {
     width: 100%;
-    padding: 0.8rem;
-    border: 2px solid var(--light-blue);
+    padding: 0.9rem 1rem;
+    border: 2px solid rgba(125, 163, 172, 0.3);
     border-radius: 8px;
     font-size: 1rem;
     color: var(--brown);
+    background-color: rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--pink);
+    box-shadow: 0 0 0 3px rgba(242, 156, 165, 0.2);
+    background-color: white;
+}
+
+.form-group:hover label {
+    color: var(--pink);
 }
 
 .checkbox-group {
     display: flex;
     align-items: center;
+    background-color: rgba(255, 224, 194, 0.2);
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    border: 1px solid rgba(251, 164, 69, 0.2);
+    transition: all 0.3s ease;
+}
+
+.checkbox-group:hover {
+    background-color: rgba(255, 224, 194, 0.3);
+    border-color: rgba(251, 164, 69, 0.3);
 }
 
 .checkbox-group input {
     margin-right: 10px;
     width: 20px;
     height: 20px;
+    accent-color: var(--pink);
+    cursor: pointer;
+}
+
+.checkbox-group label {
+    margin-bottom: 0;
+    cursor: pointer;
 }
 
 .submit-btn {
-    background-color: var(--orange);
+    background: linear-gradient(45deg, var(--orange), var(--pink));
     color: white;
     width: 100%;
     padding: 1rem;
     font-size: 1.1rem;
+    border: none;
+    box-shadow: 0 4px 15px rgba(251, 164, 69, 0.3);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.submit-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: all 0.5s ease;
+}
+
+.submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(251, 164, 69, 0.4);
+}
+
+.submit-btn:hover::before {
+    left: 100%;
 }
 
 /* Success Section */
@@ -334,14 +708,6 @@ section h3 {
 
 .whatsapp-group {
     margin-top: 2rem;
-}
-
-.whatsapp-btn {
-    background-color: #25D366;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .whatsapp-btn i {
@@ -453,5 +819,49 @@ footer a:hover {
     body {
         max-width: 100vh;
         margin: 0 auto;
+    }
+}
+
+.map-icon-left, .map-icon-right {
+    font-size: 1.2rem;
+    color: var(--orange);
+    margin: 0 10px;
+    opacity: 0.8;
+    animation: pulse-map-icon 2s infinite alternate;
+}
+
+@keyframes pulse-map-icon {
+    0% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+    100% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+}
+
+.invitation-details .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 20% 30%, rgba(251, 164, 69, 0.1) 0%, transparent 10%),
+        radial-gradient(circle at 80% 20%, rgba(242, 156, 165, 0.1) 0%, transparent 15%),
+        radial-gradient(circle at 40% 70%, rgba(125, 163, 172, 0.1) 0%, transparent 12%),
+        radial-gradient(circle at 70% 60%, rgba(255, 255, 255, 0.1) 0%, transparent 8%);
+    z-index: 0;
+    animation: float-confetti 15s ease-in-out infinite alternate;
+}
+
+@keyframes float-confetti {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 100% 100%;
     }
 } 

@@ -11,13 +11,37 @@
 <body>
     <div class="confetti-container" id="confetti-container"></div>
     
+    <!-- SVG Definitions for Flower Shape -->
+    <svg width="0" height="0" style="position: absolute;">
+        <defs>
+            <clipPath id="flower-shape">
+                <path d="M150,0 C150,0 125,100 0,150 C0,150 100,175 150,300 C150,300 200,175 300,150 C300,150 175,100 150,0 Z" />
+                <path d="M150,20 C150,20 200,75 150,150 C150,150 100,75 150,20 Z" />
+                <path d="M150,150 C150,150 200,225 150,280 C150,280 100,225 150,150 Z" />
+                <path d="M150,150 C150,150 75,200 20,150 C20,150 75,100 150,150 Z" />
+                <path d="M150,150 C150,150 225,100 280,150 C280,150 225,200 150,150 Z" />
+            </clipPath>
+            <clipPath id="flower-shape-outer">
+                <path d="M150,-10 C150,-10 120,100 -10,150 C-10,150 100,180 150,310 C150,310 200,180 310,150 C310,150 180,100 150,-10 Z" />
+                <path d="M150,10 C150,10 205,70 150,150 C150,150 95,70 150,10 Z" />
+                <path d="M150,150 C150,150 205,230 150,290 C150,290 95,230 150,150 Z" />
+                <path d="M150,150 C150,150 70,205 10,150 C10,150 70,95 150,150 Z" />
+                <path d="M150,150 C150,150 230,95 290,150 C290,150 230,205 150,150 Z" />
+            </clipPath>
+        </defs>
+    </svg>
+    
     <header>
         <div class="header-content">
             <h1>Convite de Aniversário</h1>
             <div class="princess-title">
-                <img src="assets/images/Luna 1.png" alt="Luna Princesa" class="luna-crown">
+                <div class="flower-container">
+                    <img src="img/luna.jpg" alt="Luna" class="luna-crown">
+                </div>
                 <h2>Luna</h2>
-                <p class="age">3 Anos!</p>
+                <div class="age-container">
+                    <p class="age">3 Anos!</p>
+                </div>
             </div>
         </div>
     </header>
@@ -57,30 +81,32 @@
             <div class="card">
                 <div class="card-content">
                     <h3>Confirme a sua presença</h3>
-                    <p>Por favor, confirme até 31/03/2025</p>
+                    <p><i class="fas fa-calendar-check"></i> Por favor, confirme até 31/03/2025</p>
                     
                     <form id="confirmation-form">
                         <div class="form-group">
-                            <label for="name">Nome:</label>
-                            <input type="text" id="name" name="name" required>
+                            <label for="name"><i class="fas fa-user"></i> Nome:</label>
+                            <input type="text" id="name" name="name" placeholder="Seu nome completo" required>
                         </div>
                         
                         <div class="form-group">
-                            <label for="email">Email:</label>
-                            <input type="email" id="email" name="email" required>
+                            <label for="email"><i class="fas fa-envelope"></i> Email:</label>
+                            <input type="email" id="email" name="email" placeholder="seu.email@exemplo.com" required>
                         </div>
                         
                         <div class="form-group">
-                            <label for="guests">Número de convidados:</label>
+                            <label for="guests"><i class="fas fa-users"></i> Número de convidados:</label>
                             <input type="number" id="guests" name="guests" min="1" max="10" value="1" required>
                         </div>
                         
                         <div class="form-group checkbox-group">
                             <input type="checkbox" id="confirm" name="confirm" required>
-                            <label for="confirm">Confirmo a minha presença</label>
+                            <label for="confirm">Confirmo a minha presença na festa da Luna</label>
                         </div>
                         
-                        <button type="submit" class="btn submit-btn">Enviar Confirmação</button>
+                        <button type="submit" class="btn submit-btn">
+                            <i class="fas fa-paper-plane"></i> Enviar Confirmação
+                        </button>
                     </form>
                 </div>
             </div>
@@ -89,7 +115,7 @@
         <section class="map-section">
             <div class="card">
                 <div class="card-content">
-                    <h3>Como chegar</h3>
+                    <h3><i class="fas fa-map-marker-alt map-icon-left"></i> Como chegar <i class="fas fa-map-marker-alt map-icon-right"></i></h3>
                     <div class="map-container">
                         <iframe 
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3194.4383873476945!2d-8.1500025!3d37.0986111!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd1ab161ced0a28d%3A0x4018f4162e61c5e!2sBENFARRAS%20JUNTO%20A%20ROTUNDA%20ENTRADA%20VILAMOURA%2C%20N125%2C%208100-068%20Loul%C3%A9!5e0!3m2!1spt-PT!2spt!4v1647356789012!5m2!1spt-PT!2spt" 
