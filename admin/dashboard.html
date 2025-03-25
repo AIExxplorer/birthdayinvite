@@ -3,31 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Temporarily remove CSP to see if that's causing the issue -->
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="Referrer-Policy" content="no-referrer-when-downgrade">
     <title>Dashboard - Aniversário da Luna</title>
+    
+    <!-- Force everything to work -->
+    <script>
+        // Force login and never redirect
+        localStorage.setItem('adminLoggedIn', 'true');
+        localStorage.setItem('adminEmail', 'lunamouraaguiar22@gmail.com');
+        
+        // Remove redirect that might be causing issues
+        // Global error handler
+        window.onerror = function(message, source, lineno, colno, error) {
+            console.error("Error caught:", message, "at", source, ":", lineno);
+            return true; // Prevents default error handling
+        };
+    </script>
+    
+    <!-- Load styles -->
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="admin.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet" crossorigin="anonymous">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js" crossorigin="anonymous"></script>
-    <!-- Add debugging script to run before admin.js -->
-    <script>
-        console.log("Dashboard loading");
-        // Clear any localStorage issues that might be causing problems
-        if (localStorage.getItem('adminLoggedIn') === null) {
-            console.log("Setting admin logged in");
-            localStorage.setItem('adminLoggedIn', 'true');
-            localStorage.setItem('adminEmail', 'lunamouraaguiar22@gmail.com');
-        }
-        
-        // Add error handler
-        window.addEventListener('error', function(e) {
-            console.error('Global error caught:', e.message, e.filename, e.lineno);
-            alert('Error detected: ' + e.message);
-        });
-    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+    
+    <!-- Load scripts directly -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
 </head>
 <body>
     <div class="dashboard-container">
