@@ -37,7 +37,12 @@
                     
                     <div class="stat-card">
                         <h3>Dias Restantes</h3>
-                        <p>15</p>
+                        <p id="days-remaining">0</p>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <h3>Visitantes Interessados</h3>
+                        <p id="total-leads">0</p>
                     </div>
                 </div>
                 
@@ -70,6 +75,88 @@
                         </div>
                     </div>
                 </div>
+                
+                <!-- Nova seção para usuários interessados -->
+                <div class="card leads-list-card">
+                    <div class="card-header">
+                        <h2>Visitantes Interessados</h2>
+                        <div class="card-actions">
+                            <button id="export-leads-pdf" class="action-btn">Exportar PDF</button>
+                            <button id="refresh-leads" class="action-btn">Atualizar</button>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <table id="leads-table" class="guests-table">
+                            <thead>
+                                <tr>
+                                    <th>ID do Visitante</th>
+                                    <th>Data da Visita</th>
+                                    <th>Status</th>
+                                    <th>Nome/Email</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="leads-table-body">
+                                <!-- Dados serão inseridos via JavaScript -->
+                            </tbody>
+                        </table>
+                        
+                        <div class="no-leads-message">
+                            <p>Nenhum visitante interessado registrado ainda.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Nova seção para enviar convites -->
+                <div class="card invite-list-card">
+                    <div class="card-header">
+                        <h2>Enviar Convites</h2>
+                        <div class="card-actions">
+                            <button id="add-guest-btn" class="action-btn">Adicionar Convidado</button>
+                        </div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <div id="add-guest-form" class="add-guest-form hidden">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="guest-name">Nome do Convidado</label>
+                                    <input type="text" id="guest-name" name="guest-name" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="guest-phone">Telemóvel (com código do país)</label>
+                                    <input type="tel" id="guest-phone" name="guest-phone" placeholder="+351 000000000" required>
+                                </div>
+                                
+                                <div class="form-actions-inline">
+                                    <button type="button" id="save-guest-btn" class="admin-btn btn-small">Guardar</button>
+                                    <button type="button" id="cancel-guest-btn" class="admin-btn secondary btn-small">Cancelar</button>
+                                </div>
+                            </div>
+                            <div id="add-guest-message" class="message"></div>
+                        </div>
+                        
+                        <table id="invite-table" class="guests-table">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Telemóvel</th>
+                                    <th>Status</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="invite-table-body">
+                                <!-- Dados serão inseridos via JavaScript -->
+                            </tbody>
+                        </table>
+                        
+                        <div class="no-invites-message">
+                            <p>Nenhum convidado na lista de convites ainda.</p>
+                        </div>
+                    </div>
+                </div>
             </section>
             
             <section id="settings-section" class="settings-section hidden">
@@ -85,11 +172,16 @@
                                 <input type="email" id="notification-email" name="notification-email" value="lunamouraaguiar22@gmail.com">
                             </div>
                             
+                            <div class="form-group">
+                                <label for="invitation-message">Mensagem de Convite (WhatsApp)</label>
+                                <textarea id="invitation-message" name="invitation-message" rows="4">Olá! Estás convidado para o aniversário da Luna! 🎂✨ Confirma a tua presença no link: </textarea>
+                            </div>
+                            
                             <div id="settings-message" class="message"></div>
                             
                             <div class="form-actions">
                                 <button type="submit" class="admin-btn">Guardar</button>
-                                <button type="button" id="settings-link" class="admin-btn secondary">Voltar</button>
+                                <button type="button" id="back-to-dashboard" class="admin-btn secondary">Voltar</button>
                             </div>
                         </form>
                     </div>
