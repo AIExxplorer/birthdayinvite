@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://html2canvas.hertzen.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src https://fonts.gstatic.com; img-src 'self' data:; frame-src https://www.google.com; connect-src 'self';">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Referrer-Policy" content="no-referrer-when-downgrade">
     <title>Convite de Aniversário da Luna - 3 Anos!</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Pacifico&display=swap" rel="stylesheet" crossorigin="anonymous">
 </head>
 <body>
     <div class="confetti-container" id="confetti-container"></div>
@@ -51,10 +54,10 @@
                     <div class="buttons">
                         <a href="#confirm-section" class="btn confirm-btn">Confirmar Presença</a>
                         <a href="#" class="btn calendar-btn" id="add-to-calendar">Adicionar ao Calendário</a>
-                        <a href="https://chat.whatsapp.com/knuzgxmxfr27ereymezhzl" class="btn whatsapp-btn" target="_blank">
+                        <a href="https://chat.whatsapp.com/knuzgxmxfr27ereymezhzl" class="btn whatsapp-btn" target="_blank" rel="noopener noreferrer">
                             <i class="fab fa-whatsapp"></i> Grupo WhatsApp
                         </a>
-                        <a href="https://maps.app.goo.gl/PnmqNzESqUZmKyWZ7?g_st=com.google.maps.preview.copy" class="btn map-btn" target="_blank">
+                        <a href="https://maps.app.goo.gl/PnmqNzESqUZmKyWZ7?g_st=com.google.maps.preview.copy" class="btn map-btn" target="_blank" rel="noopener noreferrer">
                             <i class="fas fa-map-marked-alt"></i> Abrir no GPS
                         </a>
                     </div>
@@ -71,12 +74,12 @@
                     <form id="confirmation-form">
                         <div class="form-group">
                             <label for="name"><i class="fas fa-user"></i> Nome:</label>
-                            <input type="text" id="name" name="name" placeholder="Seu nome completo" required>
+                            <input type="text" id="name" name="name" placeholder="Seu nome completo" required autocomplete="name">
                         </div>
                         
                         <div class="form-group">
                             <label for="email"><i class="fas fa-envelope"></i> Email:</label>
-                            <input type="email" id="email" name="email" placeholder="seu.email@exemplo.com" required>
+                            <input type="email" id="email" name="email" placeholder="seu.email@exemplo.com" required autocomplete="email">
                         </div>
                         
                         <div class="form-group">
@@ -108,11 +111,13 @@
                             height="300" 
                             style="border:0;" 
                             allowfullscreen="" 
-                            loading="lazy">
+                            loading="lazy"
+                            title="Mapa do Local"
+                            sandbox="allow-scripts allow-same-origin">
                         </iframe>
                     </div>
                     <div class="map-link">
-                        <a href="https://maps.app.goo.gl/PnmqNzESqUZmKyWZ7?g_st=com.google.maps.preview.copy" target="_blank" class="btn map-btn">
+                        <a href="https://maps.app.goo.gl/PnmqNzESqUZmKyWZ7?g_st=com.google.maps.preview.copy" target="_blank" rel="noopener noreferrer" class="btn map-btn">
                             <i class="fas fa-directions"></i> Abrir no Google Maps
                         </a>
                     </div>
@@ -142,7 +147,7 @@
                     
                     <div class="whatsapp-group">
                         <p>Junte-se ao grupo exclusivo de convidados no WhatsApp!</p>
-                        <a href="https://chat.whatsapp.com/knuzgxmxfr27ereymezhzl" class="btn whatsapp-btn" target="_blank">
+                        <a href="https://chat.whatsapp.com/knuzgxmxfr27ereymezhzl" class="btn whatsapp-btn" target="_blank" rel="noopener noreferrer">
                             <i class="fab fa-whatsapp"></i> Grupo Exclusivo de Convidados
                         </a>
                     </div>
@@ -153,12 +158,12 @@
     
     <footer>
         <div class="footer-content">
-            <p>&copy; 2025 <a href="https://www.linkedin.com/in/aiexxplore/" target="_blank">Wagner Rafael</a></p>
-            <p><a href="https://github.com/aiexxplorer" target="_blank">AIEXXPLORER™</a></p>
+            <p>&copy; 2025 <a href="https://www.linkedin.com/in/aiexxplore/" target="_blank" rel="noopener noreferrer">Wagner Rafael</a></p>
+            <p><a href="https://github.com/aiexxplorer" target="_blank" rel="noopener noreferrer">AIEXXPLORER™</a></p>
         </div>
     </footer>
     
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js" crossorigin="anonymous"></script>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script src="js/script.js"></script>
 </body>
