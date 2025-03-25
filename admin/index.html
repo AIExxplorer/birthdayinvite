@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Referrer-Policy" content="no-referrer-when-downgrade">
     <title>Admin Login - Aniversário da Luna</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="admin.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet" crossorigin="anonymous">
 </head>
 <body>
     <div class="admin-container">
@@ -19,12 +22,12 @@
             <form id="login-form" class="admin-form">
                 <div class="form-group">
                     <label for="admin-email">Email</label>
-                    <input type="email" id="admin-email" name="admin-email" required>
+                    <input type="email" id="admin-email" name="admin-email" required autocomplete="email">
                 </div>
                 
                 <div class="form-group">
                     <label for="admin-password">Password</label>
-                    <input type="password" id="admin-password" name="admin-password" required>
+                    <input type="password" id="admin-password" name="admin-password" required autocomplete="current-password">
                 </div>
                 
                 <div id="login-message" class="message"></div>
@@ -33,7 +36,7 @@
             </form>
             
             <div class="admin-footer">
-                <a href="../index.html">Voltar para a página principal</a>
+                <a href="../index.html" rel="noopener">Voltar para a página principal</a>
             </div>
         </div>
     </div>

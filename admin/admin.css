@@ -5,6 +5,7 @@
     --secondary-color: #6c5ce7;
     --text-color: #333;
     --light-gray: #f5f5f5;
+    --gray: #ddd;
     --border-color: #ddd;
     --success-color: #27ae60;
     --error-color: #e74c3c;
@@ -19,6 +20,7 @@ body {
     padding: 0;
     background-color: #f9f9f9;
     color: var(--text-color);
+    line-height: 1.6;
 }
 
 /* Estilos da página de login */
@@ -57,6 +59,35 @@ body {
     margin: 10px 0 0;
     font-size: 16px;
     opacity: 0.9;
+}
+
+.admin-info {
+    display: flex;
+    align-items: center;
+}
+
+#admin-email-display {
+    margin-right: 15px;
+    font-size: 14px;
+}
+
+.logout-btn, .settings-btn {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.logout-btn:hover, .settings-btn:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.settings-btn {
+    margin-right: 10px;
 }
 
 .admin-form {
@@ -196,31 +227,6 @@ body {
     margin: 0;
     font-size: 24px;
     font-weight: 700;
-}
-
-.admin-info {
-    display: flex;
-    align-items: center;
-}
-
-#admin-email-display {
-    margin-right: 15px;
-    font-size: 14px;
-}
-
-.logout-btn {
-    background-color: rgba(255, 255, 255, 0.2);
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s;
-}
-
-.logout-btn:hover {
-    background-color: rgba(255, 255, 255, 0.3);
 }
 
 main {

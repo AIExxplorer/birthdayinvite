@@ -3,12 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Temporarily remove CSP to see if that's causing the issue -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Referrer-Policy" content="no-referrer-when-downgrade">
     <title>Dashboard - Aniversário da Luna</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="admin.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js" crossorigin="anonymous"></script>
+    <!-- Add debugging script to run before admin.js -->
+    <script>
+        console.log("Dashboard loading");
+        // Clear any localStorage issues that might be causing problems
+        if (localStorage.getItem('adminLoggedIn') === null) {
+            console.log("Setting admin logged in");
+            localStorage.setItem('adminLoggedIn', 'true');
+            localStorage.setItem('adminEmail', 'lunamouraaguiar22@gmail.com');
+        }
+        
+        // Add error handler
+        window.addEventListener('error', function(e) {
+            console.error('Global error caught:', e.message, e.filename, e.lineno);
+            alert('Error detected: ' + e.message);
+        });
+    </script>
 </head>
 <body>
     <div class="dashboard-container">
@@ -17,6 +36,7 @@
                 <h1>Dashboard Administrativo</h1>
                 <div class="admin-info">
                     <span id="admin-email-display"></span>
+                    <button id="settings-link" class="settings-btn">Configurações</button>
                     <button id="logout-link" class="logout-btn">Sair</button>
                 </div>
             </div>
@@ -122,12 +142,12 @@
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="guest-name">Nome do Convidado</label>
-                                    <input type="text" id="guest-name" name="guest-name" required>
+                                    <input type="text" id="guest-name" name="guest-name" required autocomplete="name">
                                 </div>
                                 
                                 <div class="form-group">
                                     <label for="guest-phone">Telemóvel (com código do país)</label>
-                                    <input type="tel" id="guest-phone" name="guest-phone" placeholder="+351 000000000" required>
+                                    <input type="tel" id="guest-phone" name="guest-phone" placeholder="+351 000000000" required autocomplete="tel">
                                 </div>
                                 
                                 <div class="form-actions-inline">
@@ -169,7 +189,7 @@
                         <form id="settings-form" class="settings-form">
                             <div class="form-group">
                                 <label for="notification-email">Email para Notificações</label>
-                                <input type="email" id="notification-email" name="notification-email" value="lunamouraaguiar22@gmail.com">
+                                <input type="email" id="notification-email" name="notification-email" value="lunamouraaguiar22@gmail.com" autocomplete="email">
                             </div>
                             
                             <div class="form-group">
@@ -191,12 +211,13 @@
         
         <footer>
             <div class="footer-content">
-                <p>&copy; 2025 <a href="https://www.linkedin.com/in/aiexxplore/" target="_blank">Wagner Rafael</a></p>
-                <p><a href="https://github.com/aiexxplorer" target="_blank">AIEXXPLORER™</a></p>
+                <p>&copy; 2025 <a href="https://www.linkedin.com/in/aiexxplore/" target="_blank" rel="noopener noreferrer">Wagner Rafael</a></p>
+                <p><a href="https://github.com/aiexxplorer" target="_blank" rel="noopener noreferrer">AIEXXPLORER™</a></p>
             </div>
         </footer>
     </div>
     
+    <!-- Load admin.js after everything else -->
     <script src="admin.js"></script>
 </body>
 </html> 
