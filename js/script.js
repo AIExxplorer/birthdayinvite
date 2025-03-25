@@ -11,6 +11,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Start image slideshow
     startSlideshow();
     
+    // Capture lead from Confirm Presence button click
+    const confirmBtn = document.querySelector('.confirm-btn');
+    if (confirmBtn) {
+        confirmBtn.addEventListener('click', captureLeadData);
+    }
+    
     // Form submission
     const confirmationForm = document.getElementById('confirmation-form');
     if (confirmationForm) {
@@ -29,6 +35,115 @@ document.addEventListener('DOMContentLoaded', function() {
         downloadBadgeBtn.addEventListener('click', downloadBadge);
     }
 });
+
+// Capture basic user data when clicking on "Confirm Presence" button
+function captureLeadData(event) {
+    // We want the link to still work, but we'll collect data first
+    
+    // Check if the browser supports notifications
+    if ('Notification' in window && Notification.permission !== 'denied') {
+        Notification.requestPermission().then(permission => {
+            if (permission === 'granted') {
+                // We can ask for more data now
+                collectUserData();
+            }
+        });
+    } else {
+        // Just collect data silently
+        collectUserData();
+    }
+}
+
+// Show modal or prompt to collect user data
+function collectUserData() {
+    // Check if the user already has a saved ID (for returning visitors)
+    const visitorId = localStorage.getItem('visitorId');
+    if (visitorId) {
+        // They've been here before, just update their last visit
+        updateVisitorActivity(visitorId);
+        return;
+    }
+    
+    // Use browser APIs to get some basic info
+    const userAgent = navigator.userAgent;
+    const language = navigator.language;
+    const screenSize = `${window.screen.width}x${window.screen.height}`;
+    const referrer = document.referrer;
+    const timestamp = new Date().toISOString();
+    
+    // Generate a visitor ID
+    const newVisitorId = generateVisitorId();
+    localStorage.setItem('visitorId', newVisitorId);
+    
+    // Save visitor data to leads list
+    const visitorData = {
+        id: newVisitorId,
+        userAgent,
+        language,
+        screenSize,
+        referrer,
+        firstVisit: timestamp,
+        lastVisit: timestamp,
+        status: 'interested', // They clicked on Confirm Presence
+        converted: false
+    };
+    
+    // Add to leads list in localStorage
+    const leadsList = JSON.parse(localStorage.getItem('leadsList') || '[]');
+    leadsList.push(visitorData);
+    localStorage.setItem('leadsList', JSON.stringify(leadsList));
+    
+    // You could also attempt to get more precise location data if needed
+    // This requires user permission in modern browsers
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(position => {
+            // Update the lead with location data
+            updateLeadWithLocation(newVisitorId, position);
+        }, error => {
+            // Handle error or user declining to share location
+            console.log('Location data not available');
+        });
+    }
+}
+
+// Helper function to generate a unique ID for visitors
+function generateVisitorId() {
+    return 'visitor_' + Math.random().toString(36).substr(2, 9) + '_' + new Date().getTime();
+}
+
+// Update existing visitor data
+function updateVisitorActivity(visitorId) {
+    const leadsList = JSON.parse(localStorage.getItem('leadsList') || '[]');
+    const updatedList = leadsList.map(lead => {
+        if (lead.id === visitorId) {
+            return {
+                ...lead,
+                lastVisit: new Date().toISOString(),
+                visitCount: (lead.visitCount || 1) + 1
+            };
+        }
+        return lead;
+    });
+    
+    localStorage.setItem('leadsList', JSON.stringify(updatedList));
+}
+
+// Update lead with location data if available
+function updateLeadWithLocation(visitorId, position) {
+    const leadsList = JSON.parse(localStorage.getItem('leadsList') || '[]');
+    const updatedList = leadsList.map(lead => {
+        if (lead.id === visitorId) {
+            return {
+                ...lead,
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude
+            };
+        }
+        return lead;
+    });
+    
+    localStorage.setItem('leadsList', JSON.stringify(updatedList));
+}
 
 // Image slideshow function
 function startSlideshow() {
@@ -119,6 +234,12 @@ function handleFormSubmit(event) {
     // Update badge with guest name
     updateBadge(name);
     
+    // Update the lead to converted if they have a visitor ID
+    const visitorId = localStorage.getItem('visitorId');
+    if (visitorId) {
+        convertLead(visitorId, name, email);
+    }
+    
     // Show success section
     document.getElementById('confirmation-form').reset();
     document.getElementById('confirm-section').classList.add('hidden');
@@ -129,6 +250,9 @@ function handleFormSubmit(event) {
     
     // Send notification (in a real app)
     sendNotification(name, guests);
+    
+    // Check if this confirmation came from the invite list
+    checkForInviteConfirmation(email, name);
 }
 
 // Save guest information
@@ -215,10 +339,10 @@ function downloadBadge() {
 
 // Send notification (mock function)
 function sendNotification(name, guests) {
-    const adminEmail = "lunamouraaguiar22@gmail.com";
+    const adminEmail = localStorage.getItem('notificationEmail') || "lunamouraaguiar22@gmail.com";
     console.log(`Notification to ${adminEmail}: ${name} confirmou presença com ${guests} convidados!`);
     
-    // In a real app, this would send an email to lunamouraaguiar22@gmail.com
+    // In a real app, this would send an email to the admin
     // Example of what would happen in a real implementation:
     /*
     fetch('/api/send-notification', {
@@ -244,4 +368,56 @@ function shareWhatsApp() {
     const text = "Venha para o aniversário da Luna! 🎂 Dia 12/04/2025 às 14h. Local: BENFARRAS JUNTO A ROTUNDA ENTRADA VILAMOURA, N125, 8100-068 Loulé";
     const url = window.location.href;
     window.open(`https://wa.me/?text=${encodeURIComponent(text + ' ' + url)}`, '_blank');
+}
+
+// Check if confirmation came from invited guest
+function checkForInviteConfirmation(email, name) {
+    // If admin.js is not loaded, we need to define this function
+    if (typeof window.checkForInviteConfirmation !== 'function') {
+        const invitesList = JSON.parse(localStorage.getItem('invitesList') || '[]');
+        
+        // Check if name or phone matches someone in the invite list
+        const matchedGuest = invitesList.find(guest => 
+            guest.name.toLowerCase() === name.toLowerCase() || 
+            guest.phone.includes(email.replace(/[^0-9]/g, '')));
+        
+        if (matchedGuest) {
+            const notificationEmail = localStorage.getItem('notificationEmail') || 'lunamouraaguiar22@gmail.com';
+            console.log(`Notificação para ${notificationEmail}: Um convidado da sua lista de convites confirmou presença: ${name}`);
+            
+            // Mark as confirmed in the invites list
+            const updatedList = invitesList.map(guest => {
+                if (guest.name.toLowerCase() === name.toLowerCase() || 
+                    guest.phone.includes(email.replace(/[^0-9]/g, ''))) {
+                    return { ...guest, status: 'confirmed', confirmedAt: new Date().toISOString() };
+                }
+                return guest;
+            });
+            
+            localStorage.setItem('invitesList', JSON.stringify(updatedList));
+        }
+    } else {
+        // If admin.js is loaded, use its function
+        window.checkForInviteConfirmation(email, name);
+    }
+}
+
+// Convert a lead to a confirmed guest
+function convertLead(visitorId, name, email) {
+    const leadsList = JSON.parse(localStorage.getItem('leadsList') || '[]');
+    const updatedList = leadsList.map(lead => {
+        if (lead.id === visitorId) {
+            return {
+                ...lead,
+                name: name,
+                email: email,
+                converted: true,
+                status: 'confirmed',
+                conversionTime: new Date().toISOString()
+            };
+        }
+        return lead;
+    });
+    
+    localStorage.setItem('leadsList', JSON.stringify(updatedList));
 } 

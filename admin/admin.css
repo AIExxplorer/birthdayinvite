@@ -8,6 +8,8 @@
     --border-color: #ddd;
     --success-color: #27ae60;
     --error-color: #e74c3c;
+    --warning-color: #f39c12;
+    --info-color: #3498db;
     --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -72,16 +74,24 @@ body {
     color: var(--text-color);
 }
 
-.form-group input {
+.form-group input,
+.form-group textarea {
     width: 100%;
     padding: 12px 15px;
     border: 1px solid var(--border-color);
     border-radius: 5px;
     font-size: 16px;
     transition: border-color 0.3s;
+    font-family: 'Montserrat', sans-serif;
 }
 
-.form-group input:focus {
+.form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
     border-color: var(--primary-color);
     outline: none;
 }
@@ -111,6 +121,11 @@ body {
 
 .admin-btn.secondary:hover {
     background-color: #d0d0d0;
+}
+
+.admin-btn.btn-small {
+    padding: 8px 15px;
+    font-size: 14px;
 }
 
 .admin-footer {
@@ -146,6 +161,12 @@ body {
     background-color: rgba(39, 174, 96, 0.1);
     color: var(--success-color);
     border: 1px solid rgba(39, 174, 96, 0.3);
+}
+
+.warning-message {
+    background-color: rgba(243, 156, 18, 0.1);
+    color: var(--warning-color);
+    border: 1px solid rgba(243, 156, 18, 0.3);
 }
 
 /* Estilos do Dashboard */
@@ -305,7 +326,9 @@ main {
     border-bottom: none;
 }
 
-.no-data-message {
+.no-data-message,
+.no-invites-message,
+.no-leads-message {
     text-align: center;
     padding: 30px;
     color: #888;
@@ -329,6 +352,227 @@ main {
     display: flex;
     gap: 15px;
     margin-top: 20px;
+}
+
+/* Estilos para a seção de envio de convites */
+.add-guest-form {
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: var(--light-gray);
+    border-radius: 8px;
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: flex-end;
+}
+
+.form-row .form-group {
+    flex: 1;
+    min-width: 200px;
+    margin-bottom: 0;
+}
+
+.form-actions-inline {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.form-actions-inline .admin-btn {
+    min-width: 100px;
+}
+
+.invite-action-btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.send-invite-btn {
+    background-color: var(--success-color);
+}
+
+.send-invite-btn:hover {
+    background-color: #219653;
+}
+
+.delete-invite-btn {
+    background-color: var(--error-color);
+}
+
+.delete-invite-btn:hover {
+    background-color: #c0392b;
+}
+
+/* Estilos para a seção de leads */
+.leads-action-btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    color: white;
+    transition: background-color 0.3s;
+    margin-right: 5px;
+}
+
+.add-guest-btn {
+    background-color: var(--info-color);
+}
+
+.add-guest-btn:hover {
+    background-color: #2980b9;
+}
+
+.view-details-btn {
+    background-color: var(--secondary-color);
+}
+
+.view-details-btn:hover {
+    background-color: #5649c0;
+}
+
+.dismiss-lead-btn {
+    background-color: #95a5a6;
+}
+
+.dismiss-lead-btn:hover {
+    background-color: #7f8c8d;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    text-align: center;
+    min-width: 80px;
+    font-weight: 500;
+}
+
+.status-pending {
+    background-color: #f0f0f0;
+    color: #666;
+}
+
+.status-sent {
+    background-color: rgba(39, 174, 96, 0.2);
+    color: var(--success-color);
+}
+
+.status-error {
+    background-color: rgba(231, 76, 60, 0.2);
+    color: var(--error-color);
+}
+
+.status-interested {
+    background-color: rgba(52, 152, 219, 0.2);
+    color: var(--info-color);
+}
+
+.status-confirmed {
+    background-color: rgba(39, 174, 96, 0.2);
+    color: var(--success-color);
+}
+
+/* Estilos para o modal de detalhes do visitante */
+.lead-details-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    border-radius: 10px;
+    max-width: 800px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+    padding: 20px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.close-modal-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #888;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.detail-group {
+    margin-bottom: 15px;
+}
+
+.detail-group h4 {
+    font-size: 14px;
+    margin: 0 0 5px 0;
+    color: #777;
+    font-weight: 500;
+}
+
+.detail-group p {
+    font-size: 16px;
+    margin: 0;
+    word-break: break-word;
+}
+
+.detail-section {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.detail-section:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.detail-section h3 {
+    font-size: 16px;
+    margin: 0 0 15px 0;
+    font-weight: 600;
+}
+
+.modal-footer {
+    padding: 15px 20px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
 }
 
 footer {
@@ -392,5 +636,18 @@ footer a:hover {
     
     .form-actions {
         flex-direction: column;
+    }
+    
+    .form-row {
+        flex-direction: column;
+    }
+    
+    .form-actions-inline {
+        width: 100%;
+        margin-top: 15px;
+    }
+    
+    .modal-content {
+        width: 95%;
     }
 } 
